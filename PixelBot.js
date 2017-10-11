@@ -3,10 +3,10 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.66
 // @description  try to take over the world!
-// @author       Flyink13
+// @author       Flyink13, DarkKeks
 // @match        https://pixel.vkforms.ru/*
-// @downloadURL  https://fs.flyink.ru/pixelus.js
-// @updateURL    https://fs.flyink.ru/pixelus.js
+// @downloadURL  https://raw.githubusercontent.com/DarkKeks/PixelBot/master/PixelBot.js
+// @updateURL    https://raw.githubusercontent.com/DarkKeks/PixelBot/master/PixelBot.js
 // @grant        none
 // ==/UserScript==
 
