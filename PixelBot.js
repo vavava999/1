@@ -5,8 +5,8 @@
 // @description  try to take over the world!
 // @author       Flyink13, DarkKeks
 // @match        https://pixel.vkforms.ru/*
-// @downloadURL  https://raw.githubusercontent.com/DarkKeks/PixelBot/master/PixelBot.js
-// @updateURL    https://raw.githubusercontent.com/DarkKeks/PixelBot/master/PixelBot.js
+// @downloadURL  https://gitraw.com/DarkKeks/PixelBot/master/PixelBot.js
+// @updateURL    https://gitraw.com/DarkKeks/PixelBot/master/PixelBot.js
 // @grant        none
 // ==/UserScript==
 
@@ -17,8 +17,8 @@ function PixelBot() {
     PixelBot.tc = "rgb(0, 0, 0)";
 
     PixelBot.url = {
-        script: 'https://raw.githubusercontent.com/DarkKeks/PixelBot/master/PixelBot.js',
-        image: 'https://raw.githubusercontent.com/DarkKeks/PixelBot/master/TJ.png'
+        script: 'https://gitraw.com/DarkKeks/PixelBot/master/PixelBot.js',
+        image: 'https://gitraw.com/DarkKeks/PixelBot/master/TJ.png'
     };
 
     PixelBot.state = document.createElement("div");
