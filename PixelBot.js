@@ -259,16 +259,19 @@ function PixelBot() {
     PixelBot.reloadImage();
     console.log("PixelBot loaded");
 }
-if (window.loaded) PixelBot();
 
-var inject = function() {
-    window.loaded = 1;
-    var script = document.createElement('script');
-    script.appendChild(document.createTextNode('(' + PixelBot + ')();'));
-    (document.body || document.head || document.documentElement).appendChild(script);
-};
+if (window.loaded) {
+    PixelBot();
+} else {
+    var inject = function() {
+        window.loaded = 1;
+        var script = document.createElement('script');
+        script.appendChild(document.createTextNode('(' + PixelBot + ')();'));
+        (document.body || document.head || document.documentElement).appendChild(script);
+    };
 
-if (document.readyState == 'complete') inject();
-window.addEventListener("load", function() {
-    inject();
-});
+    //if (document.readyState == 'complete') inject();
+    window.addEventListener("load", function() {
+        inject();
+    });
+}
