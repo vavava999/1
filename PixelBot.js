@@ -18,7 +18,7 @@ function PixelBot() {
 
     PixelBot.url = {
         script: 'https://raw.githubusercontent.com/DarkKeks/PixelBot/master/PixelBot.js',
-        image: 'https://raw.githubusercontent.com/DarkKeks/PixelBot/master/map.png'
+        image: 'https://raw.githubusercontent.com/DarkKeks/PixelBot/master/TJ.png'
     };
 
     PixelBot.state = document.createElement("div");
@@ -213,6 +213,8 @@ function PixelBot() {
     PixelBot.wait = setInterval(function() {
         if(document.querySelector(".Button.primary")) {
             document.querySelector(".Button.primary").click();
+        } else if(document.querySelector(".Header__close")) {
+            document.querySelector(".Header__close").click();
         } else if (!PixelBot.inited && PixelBot.canvas) {
             PixelBot.ctx = PixelBot.canvas.getContext("2d");
             PixelBot.init();
