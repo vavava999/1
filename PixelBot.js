@@ -5,8 +5,8 @@
 // @description  try to take over the world!
 // @author       Flyink13, DarkKeks
 // @match        https://pixel.vkforms.ru/*
-// @downloadURL  http://rawgit.com/DarkKeks/PixelBot/master/PixelBot.js
-// @updateURL    http://rawgit.com/DarkKeks/PixelBot/master/PixelBot.js
+// @downloadURL  https://rawgit.com/DarkKeks/PixelBot/master/PixelBot.js
+// @updateURL    https://rawgit.com/DarkKeks/PixelBot/master/PixelBot.js
 // @grant        none
 // ==/UserScript==
 
@@ -17,8 +17,12 @@ function PixelBot() {
     PixelBot.tc = "rgb(0, 0, 0)";
 
     PixelBot.url = {
-        script: 'http://rawgit.com/DarkKeks/PixelBot/master/PixelBot.js',
-        image: 'http://rawgit.com/DarkKeks/PixelBot/master/TJ.png'
+        script: function() {
+            return 'https://rawgit.com/DarkKeks/PixelBot/master/PixelBot.js' + '?v=' + Math.random();
+        },
+        image: function() {
+            return 'https://rawgit.com/DarkKeks/PixelBot/master/TJ.png' + '?v=' + Math.random();
+        }
     };
 
     PixelBot.state = document.createElement("div");
@@ -74,7 +78,7 @@ function PixelBot() {
             PixelBot.setState("перезагрузил зону защиты.");
             if (PixelBot.inited) PixelBot.getFullData();
         };
-        PixelBot.img.src = PixelBot.url.image;
+        PixelBot.img.src = PixelBot.url.image();
     };
 
     PixelBot.canvasEvent = function(type, q) {
@@ -112,11 +116,11 @@ function PixelBot() {
             return;
         } else if (pxColor == color) {
             console.log("== " + x + "x" + y + "%c " + pxColor, 'background:' + pxColor + ';');
-            PixelBot.setState("пропускаю " + x + "x" + y + " совпал цвет");
+            PixelBot.setState("пропускаю " + (x + 1) + "x" + (y + 1) + " совпал цвет");
             return;
         } else {
             console.log(x + "x" + y + "%c " + pxColor + " > %c " + color, 'background:' + pxColor + ';', 'background:' + color + ';');
-            PixelBot.setState("поставил точку " + x + "x" + y);
+            PixelBot.setState("поставил точку " + (x + 1) + "x" + (y + 1));
         }
         colorEl.click();
         PixelBot.canvasEvent("mousedown", q);
@@ -166,14 +170,14 @@ function PixelBot() {
 
     PixelBot.getFullData = function() {
         PixelBot.pixs = [];
-        PixelBot.pixs = PixelBot.getData(0) //PixelBot.pixs
+        PixelBot.pixs = PixelBot.randomShuffle(PixelBot.getData(0)); //PixelBot.pixs
             //.concat(PixelBot.getData(0), PixelBot.getData(795))
-            .sort(function(a, b) {
-                return a[1] - b[1];
-            })
-            .sort(function(a, b) {
-                return a[0] - b[0];
-            });
+            // .sort(function(a, b) {
+            //     return a[1] - b[1];
+            // })
+            // .sort(function(a, b) {
+            //     return a[0] - b[0];
+            // });
         PixelBot.setState("осталось точек:" + PixelBot.pixs.length);
         return PixelBot.pixs.length;
     };
@@ -191,6 +195,18 @@ function PixelBot() {
             if (PixelBot.getColor(id1, i) !== PixelBot.getColor(id2, i) && PixelBot.getColor(id2, i) !== PixelBot.tc) {
                 data.push([x, y, PixelBot.getColor(id2, i), PixelBot.getColor(id1, i)]);
             }
+        }
+        return data;
+    };
+
+    PixelBot.randomShuffle = function(data) {
+        var currentIndex = data.length, temporaryValue, randomIndex;
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = data[currentIndex];
+            data[currentIndex] = data[randomIndex];
+            data[randomIndex] = temporaryValue;
         }
         return data;
     };
@@ -236,7 +252,7 @@ function PixelBot() {
         PixelBot.loger.outerHTML = "";
         clearInterval(PixelBot.wait);
         var script = document.createElement('script');
-        script.src = PixelBot.url.script;
+        script.src = PixelBot.url.script();
         document.body.appendChild(script);
     };
 
@@ -250,7 +266,7 @@ var inject = function() {
     var script = document.createElement('script');
     script.appendChild(document.createTextNode('(' + PixelBot + ')();'));
     (document.body || document.head || document.documentElement).appendChild(script);
-}
+};
 
 if (document.readyState == 'complete') inject();
 window.addEventListener("load", function() {
