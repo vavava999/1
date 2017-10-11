@@ -18,10 +18,10 @@ function PixelBot() {
 
     PixelBot.url = {
         script: function() {
-            return 'https://rawgit.com/DarkKeks/PixelBot/master/PixelBot.js' + '?v=' + Math.random();
+            return 'https://github.com/vavava999/1/master/PixelBot.js' + '?v=' + Math.random();
         },
         image: function() {
-            return 'https://rawgit.com/DarkKeks/PixelBot/master/TJ.png' + '?v=' + Math.random();
+            return 'https://github.com/vavava999/1/master/PixelBot.js' + '?v=' + Math.random();
         }
     };
 
