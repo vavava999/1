@@ -211,7 +211,9 @@ function PixelBot() {
     };
 
     PixelBot.wait = setInterval(function() {
-        if (!PixelBot.inited && PixelBot.canvas) {
+        if(document.querySelector(".Button.primary")) {
+            document.querySelector(".Button.primary").click();
+        } else if (!PixelBot.inited && PixelBot.canvas) {
             PixelBot.ctx = PixelBot.canvas.getContext("2d");
             PixelBot.init();
         } else if (PixelBot.canvas && document.querySelector(".Ttl__wait")) {
