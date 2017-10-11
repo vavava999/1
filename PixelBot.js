@@ -19,7 +19,7 @@ function PixelBot() {
     PixelBot.url = {
         script: 'https://raw.githubusercontent.com/DarkKeks/PixelBot/master/PixelBot.js',
         image: 'https://raw.githubusercontent.com/DarkKeks/PixelBot/master/map.png'
-    }
+    };
 
     PixelBot.state = document.createElement("div");
     PixelBot.state.onclick = PixelBot.reload;
@@ -103,6 +103,7 @@ function PixelBot() {
             layerX: x,
             layerY: y + 1
         };
+
         var pxColor = PixelBot.getColor(PixelBot.ctx.getImageData(x, y + 1, 1, 1).data, 0);
         var colorEl = document.querySelector('[style="background-color: ' + color + ';"]');
         if (!colorEl) {
@@ -239,9 +240,15 @@ function PixelBot() {
     console.log("PixelBot loaded");
 }
 if (window.loaded) PixelBot();
-window.addEventListener("load", function() {
+
+var inject = function() {
     window.loaded = 1;
     var script = document.createElement('script');
     script.appendChild(document.createTextNode('(' + PixelBot + ')();'));
     (document.body || document.head || document.documentElement).appendChild(script);
+}
+
+if (document.readyState == 'complete') inject();
+window.addEventListener("load", function() {
+    inject();
 });
