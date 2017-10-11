@@ -21,7 +21,7 @@ function PixelBot() {
             return 'https://github.com/vavava999/1/master/PixelBot.js' + '?v=' + Math.random();
         },
         image: function() {
-            return 'https://github.com/vavava999/1/master/TJ.png' + '?v=' + Math.random();
+            return 'https://github.com/vavava999/1/master/3.png' + '?v=' + Math.random();
         }
     };
 
